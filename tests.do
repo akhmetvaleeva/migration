@@ -1,5 +1,5 @@
 set more off
-import delimited "/Users/Olga/Dropbox/AOR-KAV/di.csv", encoding(UTF-8) clear 
+import delimited "di.csv", encoding(UTF-8) clear 
 xtset id year
 
 xtreg lcoefmigr lpop ipc davto dlong destprir infmort dlincome goods gini belowmin incgroup dlbadwater dlvrppc percmin dtotsp famsubs docload unemp
@@ -12,9 +12,9 @@ foreach v of varlist lpribyv lvybyv lcoefmigr lpop ipc avto v13 estprir infmort 
 }
 */
 
-spatwmat using "/Users/Olga/Dropbox/AOR-KAV/dij3.dta", name(W1) standardize
-spatwmat using "/Users/Olga/Dropbox/AOR-KAV/dij4.dta", name(W2) standardize
-spatwmat using "/Users/Olga/Dropbox/AOR-KAV/neighb2.dta", name(W3) binary standardize
+spatwmat using "dij3.dta", name(W1) standardize
+spatwmat using "dij4.dta", name(W2) standardize
+spatwmat using "neighb2.dta", name(W3) binary standardize
 
 set more off
 forvalues i = 2006(1)2014 {
@@ -49,9 +49,9 @@ outreg2 [sar1 sar2 sar3] using spatial.xls, excel replace
 outreg2 [sem1 sem2 sem3] using spatial2.xls, replace
 
 * Without Moscow and SpB
-spatwmat using "/Users/Olga/Dropbox/AOR-KAV/dij_nomoscow.dta", name(Wm) standardize
+spatwmat using "dij_nomoscow.dta", name(Wm) standardize
 preserve
-drop if id!=78 | id!=79
+drop if id==78 | id==79
 local xs " lpop ipc davto dlong destprir infmort dlincome goods gini belowmin incgroup dlbadwater dlvrppc percmin dtotsp famsubs docload unemp"
 xsmle lcoefmigr `xs' , wmat(Wm) fe type(both) model(sar) cluster(id) hausman
 restore

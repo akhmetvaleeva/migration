@@ -5,9 +5,8 @@ R code: *main.R*
 
 STATA code: *tests.do*
 
-If necessary, change the file paths in tests.do instead of
-"/Users/Olga/Dropbox/AOR-KAV/dij3.dta" to just "dij3.dta" or the full path on
-your system.
+If necessary, change the file paths in tests.do from "dij3.dta" (and likes) to
+"/Users/YOURNAME/YOURPATH/dij3.dta" (Mac OS).
 
 For R graphical output, please create the "img" subfolder in the project
-subfolder.
+subfolder. Otherwise comment (# mark) all lines starting with "pdf" and "dev".
